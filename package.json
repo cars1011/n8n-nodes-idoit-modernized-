@@ -1,0 +1,58 @@
+{
+  "name": "n8n-nodes-idoit",
+  "version": "1.0.0",
+  "description": "n8n node for i-doit (https://www.i-doit.com/) - read and write CMDB data via the JSON-RPC API",
+  "license": "MIT",
+  "homepage": "https://github.com/ilsuky/n8n-nodes-idoit",
+  "author": {
+    "name": "Christian Vojak",
+    "email": "c.vojak@citynet.at"
+  },
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "i-doit",
+    "cmdb"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilsuky/n8n-nodes-idoit.git"
+  },
+  "engines": {
+    "node": ">=20.15"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && npm run copy:assets",
+    "copy:assets": "cpy \"nodes/Idoit/*.png\" \"nodes/Idoit/*.svg\" dist/nodes/Idoit",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/IdoitApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Idoit/Idoit.node.js"
+    ]
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^7.0.0",
+    "cpy-cli": "^5.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.1",
+    "n8n-workflow": "^1.60.0",
+    "prettier": "^3.3.0",
+    "typescript": "^5.5.0"
+  }
+}
